@@ -61,7 +61,7 @@ public class FunctionCallExpression extends Expression {
                     //	no need to compare the type of "this"
                     continue;
                 }
-                if (!parameters.get(i).type.Compatible(function.parameters.get(i).type)) {
+                if (!function.parameters.get(i).type.Compatible(parameters.get(i).type)) {
                     throw new CompilationError("the type of parameters in the function-call expression is wrong");
                 }
             }

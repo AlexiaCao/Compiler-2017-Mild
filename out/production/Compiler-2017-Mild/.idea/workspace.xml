@@ -5,25 +5,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/Environment/Environment$16.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/test/1.mx" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/test/2.mx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildBaseListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildBaseVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildLexer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$BlockStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$ClassDeclarationContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$ConstantContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$ExpressionContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$ExpressionStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$FunctionDeclarationContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$IterationStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$JumpStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$ProgramContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$SelectionStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$StatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$TypeContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser$VariableDeclarationStatementContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/gen/AbstractSyntaxTree/MildVisitor.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/1.mx" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/2.mx" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/AbstractSyntaxTree/Expression/VariableExpression/IdentifierExpression.class" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/AbstractSyntaxTree/Expression/VariableExpression/IdentifierExpression.class" />
@@ -49,6 +30,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.bash" afterPath="$PROJECT_DIR$/build.bash" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/ConcreteSyntaxTree/Parser/Mild.g4" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/ConcreteSyntaxTree/Parser/Mild.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/build.bash" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/build.bash" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/semantic.bash" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/semantic.bash" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/src/ConcreteSyntaxTree/Parser/Mild.g4" afterPath="$PROJECT_DIR$/out/production/Compiler-2017-Mild/src/ConcreteSyntaxTree/Parser/Mild.g4" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/semantic.bash" afterPath="$PROJECT_DIR$/semantic.bash" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree/Expression/VariableExpression/IdentifierExpression.java" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree/Expression/VariableExpression/IdentifierExpression.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AbstractSyntaxTree/Program.java" afterPath="$PROJECT_DIR$/src/AbstractSyntaxTree/Program.java" />
@@ -71,8 +56,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+            <state relative-caret-position="228">
+              <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,9 +177,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-6" />
-    <option name="width" value="2560" />
-    <option name="height" value="1348" />
+    <option name="x" value="-1" />
+    <option name="y" value="1" />
+    <option name="width" value="2562" />
+    <option name="height" value="1342" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -212,8 +198,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -429,6 +413,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -726,7 +712,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-6" width="2560" height="1348" extended-state="6" />
+    <frame x="-1" y="1" width="2562" height="1342" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -744,7 +730,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959807" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25281352" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31636363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25281352" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -1045,7 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,7 +1038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="32" column="60" lean-forward="false" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,7 +1055,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1079,9 +1062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1089,7 +1069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1097,7 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10260">
           <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,8 +1157,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+        <state relative-caret-position="228">
+          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
