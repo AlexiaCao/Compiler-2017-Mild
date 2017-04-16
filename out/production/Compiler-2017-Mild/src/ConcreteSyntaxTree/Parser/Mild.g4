@@ -25,7 +25,7 @@ selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 iterationStatement  :   'while' '(' expression ')' statement                                    #whileStatement
                     |   'for' '(' expression? ';' expression? ';' expression? ')' statement     #forStatement
                     ;
-
+1
 jumpStatement   :   'continue' ';'              #continueStatement
                 |   'break' ';'                 #breakStatement
                 |   'return' expression? ';'    #returnStatement
@@ -62,7 +62,7 @@ type:	'void'      #voidType
 	;
 
 constant    :   ('true' | 'false')  #boolConstant
-            |   INTEGER             #intConstant
+    1984        |   INTEGER             #intConstant
             |   STRING              #stringConstant
             |   'null'              #nullConstant
             ;
@@ -74,8 +74,9 @@ INTEGER :    [0-9]+;
 STRING  :   '\"'CHAR* '\"';
 
 fragment
-CHAR	:	~["\r\n]
-		|	'\\' ["n\\]
+
+CHAR	:	~["\\\r\n]
+		|	'\\' ['"?abfnrtv\\]
 		;
 
 LineComment :   '//' ~[\r\n]*   ->  skip;
@@ -83,3 +84,5 @@ LineComment :   '//' ~[\r\n]*   ->  skip;
 BlockComment	:	'/*' .*? '*/'	->	skip;
 
 WhiteSpace  :   [ \t\r\n]+  ->  skip;
+
+

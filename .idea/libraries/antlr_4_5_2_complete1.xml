@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="antlr-4.5.2-complete1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Compiler-2017-Mild/lib/antlr-4.5.2-complete.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
