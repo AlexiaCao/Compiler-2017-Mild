@@ -1,0 +1,26 @@
+int main() {
+    int n = 10;
+    int f0 = 0, f1 = 1, f2;
+    for (int i = 1; i < n; ++i) {
+        f2 = f0 + f1;
+        f0 = f1;
+        f1 = f2;
+    }
+    return f2;
+}
+
+/*!! metadata:
+=== comment ===
+ssa2.mx
+=== assert ===
+exitcode
+=== phase ===
+codegen pretest
+=== timeout ===
+0.1
+=== input ===
+=== exitcode ===
+55
+=== is_public ===
+True
+!!*/
