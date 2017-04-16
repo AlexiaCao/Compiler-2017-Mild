@@ -38,6 +38,7 @@ public class Environment {
     }
 
     private static void loadLibraryFunctions() {
+
         symbolTable.add("print", Function.getFunction(
                 "____builtin____print",
                 VoidType.getType(),
@@ -45,13 +46,7 @@ public class Environment {
                     add(new Symbol("str", StringType.getType()));
                 }}
         ));
-        symbolTable.add("printInt", Function.getFunction(
-                "____builtin____print_int",
-                VoidType.getType(),
-                new ArrayList<Symbol>() {{
-                    add(new Symbol("int", IntType.getType()));
-                }}
-        ));
+
         symbolTable.add("println", Function.getFunction(
                 "____builtin____println",
                 VoidType.getType(),
@@ -59,16 +54,19 @@ public class Environment {
                     add(new Symbol("str", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("getString", Function.getFunction(
                 "____builtin____get_string",
                 StringType.getType(),
                 new ArrayList<>()
         ));
+
         symbolTable.add("getInt", Function.getFunction(
                 "____builtin____get_int",
                 IntType.getType(),
                 new ArrayList<>()
         ));
+
         symbolTable.add("toString", Function.getFunction(
                 "____builtin____to_string",
                 StringType.getType(),
@@ -76,6 +74,7 @@ public class Environment {
                     add(new Symbol("int", IntType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_array____size", Function.getFunction(
                 "____builtin_array____size",
                 IntType.getType(),
@@ -83,6 +82,7 @@ public class Environment {
                     add(new Symbol("this", VoidType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____length", Function.getFunction(
                 "____builtin_string____length",
                 IntType.getType(),
@@ -90,6 +90,7 @@ public class Environment {
                     add(new Symbol("this", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____ord", Function.getFunction(
                 "____builtin_string____ord",
                 IntType.getType(),
@@ -98,6 +99,7 @@ public class Environment {
                     add(new Symbol("pos", IntType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____substring", Function.getFunction(
                 "____builtin_string____substring",
                 StringType.getType(),
@@ -107,6 +109,7 @@ public class Environment {
                     add(new Symbol("rhs", IntType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____parse_int", Function.getFunction(
                 "____builtin_string____parse_int",
                 IntType.getType(),
@@ -114,6 +117,7 @@ public class Environment {
                     add(new Symbol("this", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____concatenate", Function.getFunction(
                 "____builtin_string____concatenate",
                 StringType.getType(),
@@ -122,6 +126,7 @@ public class Environment {
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____equal_to", Function.getFunction(
                 "____builtin_string____equal_to",
                 BoolType.getType(),
@@ -130,6 +135,7 @@ public class Environment {
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____greater_than", Function.getFunction(
                 "____builtin_string____greater_than",
                 BoolType.getType(),
@@ -138,6 +144,7 @@ public class Environment {
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
+
         symbolTable.add("____builtin_string____greater_than_or_equal_to", Function.getFunction(
                 "____builtin_string____greater_than_or_equal_to",
                 BoolType.getType(),

@@ -3,6 +3,7 @@ package AbstractSyntaxTree;
 import Environment.ScopeTable.Scope;
 import AbstractSyntaxTree.Statement.VariableDeclarationStatement;
 import AbstractSyntaxTree.Type.ClassType.ClassType;
+import Utility.Error.CompilationError;
 import Utility.Utility;
 
 import java.util.ArrayList;
@@ -34,6 +35,13 @@ public class Program implements Node, Scope {
 
     public void addGlobalVariable(VariableDeclarationStatement globalVarible) {
         globalVariables.add(globalVarible);
+    }
+
+    public void MainFunctionExistence(){
+        for (int i = 0; i < functions.size(); ++i) {
+            if (functions.get(i).name.equals("main")) return;
+        }
+        throw new CompilationError("A \"main\" function is expected in the program");
     }
 
     @Override

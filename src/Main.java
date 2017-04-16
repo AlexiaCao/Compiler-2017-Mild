@@ -51,6 +51,7 @@ public class Main {
         walker.walk(new DeclarationFetcherListener(), tree);
         Environment.classTable.analysis();
         walker.walk(new TreeBuilderListener(), tree);
+        Environment.program.MainFunctionExistence();
     }
 
     void compile(InputStream input, OutputStream output) throws Exception {

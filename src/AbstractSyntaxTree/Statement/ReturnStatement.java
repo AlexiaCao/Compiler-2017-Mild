@@ -21,6 +21,7 @@ public class ReturnStatement extends Statement {
 
     public static Statement getStatement(Expression expression) {
         Function function = Environment.scopeTable.getFunctionScope();
+
         if (function == null) {
             throw new CompilationError("return statement should be placed in a function");
         }
@@ -29,7 +30,7 @@ public class ReturnStatement extends Statement {
                 return new ReturnStatement(expression, function);
             }
         } else {
-            if (expression.type.Compatible(function.type)) {
+            if (function.type.Compatible(expression.type)) {
                 return new ReturnStatement(expression, function);
             }
         }
