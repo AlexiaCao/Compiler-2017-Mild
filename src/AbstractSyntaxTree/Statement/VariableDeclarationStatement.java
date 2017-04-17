@@ -3,6 +3,7 @@ package AbstractSyntaxTree.Statement;
 import Environment.SymbolTable.Symbol;
 import AbstractSyntaxTree.Expression.Expression;
 import AbstractSyntaxTree.Type.BasicType.VoidType;
+import AbstractSyntaxTree.Type.ArrayType;
 import Utility.Error.CompilationError;
 import Utility.Utility;
 

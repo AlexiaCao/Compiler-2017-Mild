@@ -291,19 +291,20 @@ public class TreeBuilderListener extends BaseListener {
 
     @Override
     public void exitNewExpression(MildParser.NewExpressionContext ctx) {
+        String pre = null;
         List<Expression> dimensionExpressions = new ArrayList<>();
         ctx.expression().forEach(expressionContext -> {
             Expression dimensionExpression = (Expression)returnNode.get(expressionContext);
             dimensionExpressions.add(dimensionExpression);
         });
-        ctx.children.forEach(parseTree -> {
-            if (parseTree instanceof TerminalNode) {
-                Token token = ((TerminalNode)parseTree).getSymbol();
-                if (token.getText().equals("[]")) {
+        for (ParseTree each : ctx.children){
+            if (each instanceof TerminalNode) {
+                if (each.getText().equals("]") && pre.equals("[")){
                     dimensionExpressions.add(null);
                 }
             }
-        });
+            pre = each.getText();
+        }
         Type baseType = (Type)returnNode.get(ctx.type());
         returnNode.put(ctx, NewExpression.getExpression(baseType, dimensionExpressions));
     }
