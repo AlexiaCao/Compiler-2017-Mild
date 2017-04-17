@@ -32,9 +32,12 @@ public class Function extends Type implements Node, Scope {
             }
         }
 
+        if (name.equals("this")) {
+            throw new CompilationError("The program cannot have a function named \"this\"");
+        }
         if (name.equals("main")) {
             if (!(returnType instanceof IntType)) {
-                throw new CompilationError("The function \" main() \" should be an IntType function");
+                throw new CompilationError("The function \"main()\" should be an IntType function");
             }
             if (parameters.size() != 0) {
                 throw new CompilationError("The function \"main()\" cannot have any parameters");

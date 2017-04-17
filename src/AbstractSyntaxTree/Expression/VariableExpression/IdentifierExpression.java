@@ -11,7 +11,10 @@ import Utility.Utility;
 
 import java.util.List;
 
-public class IdentifierExpression extends Expression {
+public class
+
+
+IdentifierExpression extends Expression {
 	public Symbol symbol;
 
 	private IdentifierExpression(Type resultType, boolean resultIsLeftValue, Symbol symbol) {

@@ -25,7 +25,7 @@ selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 iterationStatement  :   'while' '(' expression ')' statement                                    #whileStatement
                     |   'for' '(' expression? ';' expression? ';' expression? ')' statement     #forStatement
                     ;
-1
+
 jumpStatement   :   'continue' ';'              #continueStatement
                 |   'break' ';'                 #breakStatement
                 |   'return' expression? ';'    #returnStatement
@@ -39,7 +39,7 @@ expression  :   constant                                            #constantExp
             |   expression '[' expression ']'                       #subscriptExpression
             |   expression '.' IDENTIFIER                           #fieldExpression
             |   operator=('+'|'-'|'!'|'~'|'++'|'--') expression     #unaryExpression
-            |   'new' type ('[' expression ']')* ('[]')*            #newExpression
+            |   'new' type ('[' expression ']')* ('[' ']')*         #newExpression
             |   expression operator=('*'|'/'|'%') expression        #multiplicativeExpression
             |   expression operator=('+'|'-') expression            #additiveExpression
             |   expression operator=('<<'|'>>') expression          #shiftExpression
@@ -58,11 +58,11 @@ type:	'void'      #voidType
 	|	'string'    #stringType
 	|	'bool'      #boolType
 	|	IDENTIFIER          #classType
-	|   type '[]'   #arrayType
+	|   type '[' ']'   #arrayType
 	;
 
 constant    :   ('true' | 'false')  #boolConstant
-    1984        |   INTEGER             #intConstant
+            |   INTEGER             #intConstant
             |   STRING              #stringConstant
             |   'null'              #nullConstant
             ;
@@ -84,5 +84,3 @@ LineComment :   '//' ~[\r\n]*   ->  skip;
 BlockComment	:	'/*' .*? '*/'	->	skip;
 
 WhiteSpace  :   [ \t\r\n]+  ->  skip;
-
-

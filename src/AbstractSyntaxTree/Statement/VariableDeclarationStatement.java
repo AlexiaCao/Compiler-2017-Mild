@@ -18,6 +18,9 @@ public class VariableDeclarationStatement extends Statement {
     }
 
     public static Statement getStatement(Symbol symbol, Expression expression) {
+        if (symbol.name.equals("this")) {
+            throw new CompilationError("\"this\" cannot be the name of variable-declaration");
+        }
         if (symbol.type instanceof VoidType) {
             throw new CompilationError("VoidType can not be in the left-side of the variable-declaration statement");
         }
@@ -25,7 +28,6 @@ public class VariableDeclarationStatement extends Statement {
             return new VariableDeclarationStatement(symbol, expression);
         }
         throw new CompilationError("The type of two expressions are not compatible in the the variable-declaration statement");
-
     }
 
     @Override
