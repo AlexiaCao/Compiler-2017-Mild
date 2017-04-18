@@ -1,5 +1,6 @@
 package ConcreteSyntaxTree.Listener;
 
+import AbstractSyntaxTree.Type.ArrayType;
 import Environment.Environment;
 import Environment.SymbolTable.Symbol;
 import AbstractSyntaxTree.Expression.BinaryExpression.*;
@@ -235,6 +236,9 @@ public class TreeBuilderListener extends BaseListener {
 
     @Override
     public void exitSubscriptExpression(MildParser.SubscriptExpressionContext ctx) {
+        if (ctx.expression(0) instanceof MildParser.NewExpressionContext) {
+            throw new CompilationError("wrong ArrayType variable declaration statement");
+        }
         returnNode.put(ctx, SubscriptExpression.getExpression(
                 (Expression)returnNode.get(ctx.expression(0)),
                 (Expression)returnNode.get(ctx.expression(1))
