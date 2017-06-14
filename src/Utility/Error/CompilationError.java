@@ -1,6 +1,6 @@
 package Utility.Error;
 
-import ConcreteSyntaxTree.Listener.BaseListener;
+import FrontEnd.ConcreteSyntaxTree.Listener.BaseListener;
 
 public class CompilationError extends Error {
     public CompilationError(String errorMessage) {

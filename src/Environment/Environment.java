@@ -4,12 +4,12 @@ import Environment.ScopeTable.Scope;
 import Environment.ScopeTable.ScopeTable;
 import Environment.SymbolTable.Symbol;
 import Environment.SymbolTable.SymbolTable;
-import AbstractSyntaxTree.Function;
-import AbstractSyntaxTree.Program;
-import AbstractSyntaxTree.Type.BasicType.BoolType;
-import AbstractSyntaxTree.Type.BasicType.IntType;
-import AbstractSyntaxTree.Type.BasicType.StringType;
-import AbstractSyntaxTree.Type.BasicType.VoidType;
+import FrontEnd.AbstractSyntaxTree.Function;
+import FrontEnd.AbstractSyntaxTree.Program;
+import FrontEnd.AbstractSyntaxTree.Type.BasicType.BoolType;
+import FrontEnd.AbstractSyntaxTree.Type.BasicType.IntType;
+import FrontEnd.AbstractSyntaxTree.Type.BasicType.StringType;
+import FrontEnd.AbstractSyntaxTree.Type.BasicType.VoidType;
 
 import java.util.ArrayList;
 
@@ -18,11 +18,13 @@ public class Environment {
     public static ScopeTable scopeTable;
     public static SymbolTable symbolTable;
     public static ClassTable classTable;
+    public static RegisterTable registerTable;
 
     public static void Initialize() {
         scopeTable = new ScopeTable();
         symbolTable = new SymbolTable();
         classTable = new ClassTable();
+        registerTable = new RegisterTable();
         enterScope(program = Program.getProgram());
         loadLibraryFunctions();
     }

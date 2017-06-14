@@ -1,11 +1,14 @@
 import Environment.Environment;
-import AbstractSyntaxTree.Function;
-import ConcreteSyntaxTree.Listener.ClassFetcherListener;
-import ConcreteSyntaxTree.Listener.DeclarationFetcherListener;
-import ConcreteSyntaxTree.Listener.SyntaxErrorListener;
-import ConcreteSyntaxTree.Listener.TreeBuilderListener;
-import ConcreteSyntaxTree.Parser.MildLexer;
-import ConcreteSyntaxTree.Parser.MildParser;
+import BackEnd.Allocator.GlobalRegisterAllocator.GlobalRegisterAllocator;
+import BackEnd.ControlFlowGraph.Graph;
+import BackEnd.Translator.NASM.NASMTranslator.NASMNaiveTranslator;
+import FrontEnd.AbstractSyntaxTree.Function;
+import FrontEnd.ConcreteSyntaxTree.Listener.ClassFetcherListener;
+import FrontEnd.ConcreteSyntaxTree.Listener.DeclarationFetcherListener;
+import FrontEnd.ConcreteSyntaxTree.Listener.SyntaxErrorListener;
+import FrontEnd.ConcreteSyntaxTree.Listener.TreeBuilderListener;
+import FrontEnd.ConcreteSyntaxTree.Parser.MildLexer;
+import FrontEnd.ConcreteSyntaxTree.Parser.MildParser;
 import Utility.Error.CompilationError;
 import Utility.Error.InternalError;
 import Utility.Utility;
@@ -17,7 +20,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -26,6 +28,7 @@ public class Main {
         Utility.arguments = new HashSet<>(Arrays.asList(args));
         InputStream is = new FileInputStream("program.txt");
         try {
+            //new Main().compile(System.in, System.out);
             new Main().compile(is, System.out);
         } catch (CompilationError e) {
             System.err.println(e.getMessage());
@@ -59,9 +62,14 @@ public class Main {
     void compile(InputStream input, OutputStream output) throws Exception {
         Environment.Initialize();
         load(input);
-        if (Utility.arguments.contains("-ast")) {
-            System.err.println(Environment.program.toString(0));
+
+        for (Function function : Environment.program.functions) {
+            //System.out.println(function.name);
+            function.graph = new Graph(function);
+            //function.allocator = new GlobalRegisterAllocator(function);
         }
+
+        new NASMNaiveTranslator(new PrintStream(output)).translate();
     }
 
 }

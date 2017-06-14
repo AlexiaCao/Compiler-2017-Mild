@@ -1,9 +1,8 @@
 package Environment.SymbolTable;
 
 import Environment.Environment;
-import AbstractSyntaxTree.Type.Type;
+import FrontEnd.AbstractSyntaxTree.Type.Type;
 import Utility.Error.CompilationError;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,16 +32,19 @@ public class SymbolTable {
 
     public Symbol addGlobalVariable(String name, Type type){
         Symbol symbol = add(name, type);
+        symbol.register = Environment.registerTable.addGlobalRegister(symbol);
         return symbol;
     }
 
     public Symbol addTemporaryVariable(String name, Type type) {
         Symbol symbol = add(name, type);
+        symbol.register = Environment.registerTable.addTemporaryRegister(symbol);
         return symbol;
     }
 
     public Symbol addParameterVariable(String name, Type type) {
         Symbol symbol = add(name, type);
+        symbol.register = Environment.registerTable.addParameterRegister(symbol);
         return symbol;
     }
 

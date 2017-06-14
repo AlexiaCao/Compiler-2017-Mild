@@ -1,6 +1,6 @@
 package Environment;
 
-import AbstractSyntaxTree.Type.ClassType.ClassType;
+import FrontEnd.AbstractSyntaxTree.Type.ClassType.ClassType;
 import Utility.Error.CompilationError;
 
 import java.util.*;

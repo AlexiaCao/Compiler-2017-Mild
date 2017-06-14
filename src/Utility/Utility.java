@@ -1,5 +1,6 @@
 package Utility;
 
+import BackEnd.Translator.NASM.NASMRegister;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,5 +25,9 @@ public class Utility {
             }
         }
         return length;
+    }
+
+    public static int getAligned(int size) {
+        return (size + NASMRegister.size() - 1) / NASMRegister.size() * NASMRegister.size();
     }
 }

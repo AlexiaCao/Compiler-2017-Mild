@@ -1,5 +1,5 @@
-// Generated from /home/alexia/Compiler-2017-Mild/src/ConcreteSyntaxTree/Parser/Mild.g4 by ANTLR 4.6
-package ConcreteSyntaxTree.Parser;
+// Generated from /home/alexia/Compiler-2017-Mild/src/FrontEnd.ConcreteSyntaxTree/Parser/Mild.g4 by ANTLR 4.6
+package FrontEnd.ConcreteSyntaxTree.Parser;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

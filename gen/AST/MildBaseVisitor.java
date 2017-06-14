@@ -1,5 +1,5 @@
 // Generated from /home/alexia/Compiler-2017-meet/src/AST/Mild.g4 by ANTLR 4.6
-package AbstractSyntaxTree;
+package FrontEnd.AbstractSyntaxTree;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**

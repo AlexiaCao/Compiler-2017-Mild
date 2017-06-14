@@ -1,8 +1,8 @@
 package Environment.ScopeTable;
 
-import AbstractSyntaxTree.Function;
-import AbstractSyntaxTree.Statement.LoopStatement.LoopStatement;
-import AbstractSyntaxTree.Type.ClassType.ClassType;
+import FrontEnd.AbstractSyntaxTree.Function;
+import FrontEnd.AbstractSyntaxTree.Statement.LoopStatement.LoopStatement;
+import FrontEnd.AbstractSyntaxTree.Type.ClassType.ClassType;
 import Utility.Error.InternalError;
 
 import java.util.Stack;
