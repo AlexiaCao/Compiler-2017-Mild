@@ -35,25 +35,25 @@ public class ScopeTable {
 
     public void exitScope() {
         if (scopes.empty()) {
-            throw new InternalError();
+            throw new InternalError("ScopeTable:exitScope.");
         }
 
         Scope scope = scopes.pop();
         if (scope instanceof ClassType) {
             if (classScopes.empty()) {
-                throw new InternalError();
+                throw new InternalError("ScopeTable:exitScope.");
             }
             classScopes.pop();
         }
         if (scope instanceof Function) {
             if (functionScopes.empty()) {
-                throw new InternalError();
+                throw new InternalError("ScopeTable:exitScope.");
             }
             functionScopes.pop();
         }
         if (scope instanceof LoopStatement) {
             if (loopScopes.empty()) {
-                throw new InternalError();
+                throw new InternalError("ScopeTable:exitScope.");
             }
             loopScopes.pop();
         }

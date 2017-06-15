@@ -16,7 +16,7 @@ public class LessThanOrEqualInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new LessThanOrEqualInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("LessThanOrEqualInstruction:getInstruction.");
     }
 
     @Override

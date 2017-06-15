@@ -16,7 +16,7 @@ public class EqualInstruction extends BinaryInstruction {
         if (destination instanceof VirtualRegister) {
             return new EqualInstruction((VirtualRegister)destination, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("EqualInstruction:getInstruction.");
     }
 
     @Override

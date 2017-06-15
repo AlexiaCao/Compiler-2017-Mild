@@ -42,7 +42,7 @@ public class Environment {
     private static void loadLibraryFunctions() {
 
         symbolTable.add("print", Function.getFunction(
-                "____builtin____print",
+                "__builtin_print",
                 VoidType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("str", StringType.getType()));
@@ -50,7 +50,7 @@ public class Environment {
         ));
 
         symbolTable.add("println", Function.getFunction(
-                "____builtin____println",
+                "__builtin_println",
                 VoidType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("str", StringType.getType()));
@@ -58,43 +58,43 @@ public class Environment {
         ));
 
         symbolTable.add("getString", Function.getFunction(
-                "____builtin____get_string",
+                "__builtin_getString",
                 StringType.getType(),
                 new ArrayList<>()
         ));
 
         symbolTable.add("getInt", Function.getFunction(
-                "____builtin____get_int",
+                "__builtin_getInt",
                 IntType.getType(),
                 new ArrayList<>()
         ));
 
         symbolTable.add("toString", Function.getFunction(
-                "____builtin____to_string",
+                "__builtin_toString",
                 StringType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("int", IntType.getType()));
                 }}
         ));
 
-        symbolTable.add("____builtin_array____size", Function.getFunction(
-                "____builtin_array____size",
+        symbolTable.add("__builtin_getArraySize", Function.getFunction(
+                "__builtin_getArraySize",
                 IntType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("this", VoidType.getType()));
                 }}
         ));
 
-        symbolTable.add("____builtin_string____length", Function.getFunction(
-                "____builtin_string____length",
+        symbolTable.add("__builtin_getStringLength", Function.getFunction(
+                "__builtin_getStringLength",
                 IntType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("this", StringType.getType()));
                 }}
         ));
 
-        symbolTable.add("____builtin_string____ord", Function.getFunction(
-                "____builtin_string____ord",
+        symbolTable.add("__builtin_ord", Function.getFunction(
+                "__builtin_ord",
                 IntType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("this", StringType.getType()));
@@ -102,8 +102,8 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("____builtin_string____substring", Function.getFunction(
-                "____builtin_string____substring",
+        symbolTable.add("__builtin_getSubstring", Function.getFunction(
+                "__builtin_getSubstring",
                 StringType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("this", StringType.getType()));
@@ -112,16 +112,16 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("____builtin_string____parse_int", Function.getFunction(
-                "____builtin_string____parse_int",
+        symbolTable.add("__builtin_string__parse_int", Function.getFunction(
+                "__builtin_parseInt",
                 IntType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("this", StringType.getType()));
                 }}
         ));
 
-        symbolTable.add("____builtin_string____concatenate", Function.getFunction(
-                "____builtin_string____concatenate",
+        symbolTable.add("__builtin_string_concat", Function.getFunction(
+                "__builtin_string_concat",
                 StringType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
@@ -129,8 +129,8 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("____builtin_string____equal_to", Function.getFunction(
-                "____builtin_string____equal_to",
+        symbolTable.add("__builtin_string_equalTo", Function.getFunction(
+                "__builtin_string_equalTo",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
@@ -138,8 +138,8 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("____builtin_string____greater_than", Function.getFunction(
-                "____builtin_string____greater_than",
+        symbolTable.add("__builtin_string_greaterThan", Function.getFunction(
+                "__builtin_string_greaterThan",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
@@ -147,37 +147,37 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("____builtin_string____greater_than_or_equal_to", Function.getFunction(
-                "____builtin_string____greater_than_or_equal_to",
+        symbolTable.add("__builtin_string_greaterThanOrEqualTo", Function.getFunction(
+                "__builtin_string_greaterThanOrEqualTo",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
-        symbolTable.add("____builtin_string____less_than", Function.getFunction(
-                "____builtin_string____less_than",
+        symbolTable.add("__builtin_string_lessThan", Function.getFunction(
+                "__builtin_string_lessThan",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
-        symbolTable.add("____builtin_string____less_than_or_equal_to", Function.getFunction(
-                "____builtin_string____less_than_or_equal_to",
+        symbolTable.add("__builtin_string_lessThanOrEqualTo", Function.getFunction(
+                "__builtin_string_lessThanOrEqualTo",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
-        symbolTable.add("____builtin_string____not_equal_to", Function.getFunction(
+        /*symbolTable.add("____builtin_string____not_equal_to", Function.getFunction(
                 "____builtin_string____not_equal_to",
                 BoolType.getType(),
                 new ArrayList<Symbol>() {{
                     add(new Symbol("lhs", StringType.getType()));
                     add(new Symbol("rhs", StringType.getType()));
                 }}
-        ));
+        ));*/
     }
 }

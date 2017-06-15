@@ -16,7 +16,7 @@ public class SubtractionInstruction extends BinaryInstruction {
         if (destination instanceof VirtualRegister) {
             return new SubtractionInstruction((VirtualRegister)destination, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("SubtractionInstruction:getInstruction.");
     }
 
     @Override

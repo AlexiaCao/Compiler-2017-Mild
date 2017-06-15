@@ -26,10 +26,10 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) throws Exception {
         Utility.arguments = new HashSet<>(Arrays.asList(args));
-        InputStream is = new FileInputStream("program.txt");
+        //InputStream is = new FileInputStream("program.txt");
         try {
-            //new Main().compile(System.in, System.out);
-            new Main().compile(is, System.out);
+            new Main().compile(System.in, System.out);
+            //new Main().compile(is, System.out);
         } catch (CompilationError e) {
             System.err.println(e.getMessage());
             System.exit(1);
@@ -64,7 +64,7 @@ public class Main {
         load(input);
 
         for (Function function : Environment.program.functions) {
-            //System.out.println(function.name);
+          //  System.out.println(function.name);
             function.graph = new Graph(function);
             //function.allocator = new GlobalRegisterAllocator(function);
         }

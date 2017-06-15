@@ -16,7 +16,7 @@ public class  AdditionInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new AdditionInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("AdditionInstruction:getInstruction");
     }
 
     @Override

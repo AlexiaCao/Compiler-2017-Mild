@@ -21,7 +21,7 @@ public class AllocateInstruction extends MemoryInstruction {
         if (target instanceof VirtualRegister) {
             return new AllocateInstruction((VirtualRegister)target, size);
         }
-        throw new InternalError();
+        throw new InternalError("AllocateInstruction:getInstruction.");
     }
 
     @Override

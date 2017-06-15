@@ -14,7 +14,7 @@ public class BitLeftShiftInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new BitLeftShiftInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("BitLeftShiftInstruction:getInstruction");
     }
 
     @Override

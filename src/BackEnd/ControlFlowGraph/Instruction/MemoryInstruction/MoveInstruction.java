@@ -21,7 +21,7 @@ public class MoveInstruction extends MemoryInstruction {
         if (target instanceof VirtualRegister) {
             return new MoveInstruction((VirtualRegister)target, source);
         }
-        throw new InternalError();
+        throw new InternalError("MoveInstruction:Instruction.");
     }
 
     @Override

@@ -28,7 +28,7 @@ public class CallInstruction extends FunctionInstruction {
         } else if (destination instanceof VirtualRegister) {
             return new CallInstruction((VirtualRegister)destination, function, parameters);
         }
-        throw new InternalError();
+        throw new InternalError("CallInstruction:getInstruction.");
     }
 
     @Override

@@ -16,7 +16,7 @@ public class BitXorInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new BitXorInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("BitXorInstruction:getInstruction.");
     }
 
     @Override

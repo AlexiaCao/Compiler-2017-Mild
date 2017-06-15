@@ -16,7 +16,7 @@ public class MultiplicationInstruction extends BinaryInstruction {
         if (destination instanceof VirtualRegister) {
             return new MultiplicationInstruction((VirtualRegister)destination, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("MultiplicationInstruction:getInstruction.");
     }
 
     @Override

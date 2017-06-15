@@ -16,7 +16,7 @@ public class BitAndInstruction extends BinaryInstruction {
         if (destination instanceof VirtualRegister) {
             return new BitAndInstruction((VirtualRegister)destination, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("BitAndInstruction:getInstruction.");
     }
 
     @Override

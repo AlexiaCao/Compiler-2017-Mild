@@ -19,7 +19,7 @@ public class ArrayType extends Type{
             throw new CompilationError("The void ArrayType is not allowed!");
         }
         if (dimension == 0) {
-            throw new InternalError();
+            throw new InternalError("ArrayType:getType.");
         }
         return new ArrayType(baseType, dimension);
     }

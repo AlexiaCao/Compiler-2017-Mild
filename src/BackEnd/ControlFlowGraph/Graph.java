@@ -271,7 +271,7 @@ public class Graph {
                     return parameter.get(operand);
                 }
             }
-            throw new InternalError();
+            throw new InternalError("Frame:getOffset.");
         }
     }
 }

@@ -23,7 +23,7 @@ public class StoreInstruction extends MemoryInstruction {
         if (address instanceof Address) {
             return new StoreInstruction(source, (Address)address);
         }
-        throw new InternalError();
+        throw new InternalError("StoreInstruction:getInstruction.");
     }
 
     @Override
@@ -56,7 +56,7 @@ public class StoreInstruction extends MemoryInstruction {
         } else if (address.size == 4) {
             return "sw";
         }
-        throw new InternalError();
+        throw new InternalError("StoreInstruction:NASMName.");
     }
 
     @Override

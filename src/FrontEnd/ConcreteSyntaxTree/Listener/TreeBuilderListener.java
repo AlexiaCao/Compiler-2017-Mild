@@ -174,7 +174,7 @@ public class TreeBuilderListener extends BaseListener {
                 } else if (semicolons == 2) {
                     forStatement.addIncrement(expression);
                 } else {
-                    throw new InternalError();
+                    throw new InternalError("TreeBuilder:exitForStatement.");
                 }
             }
         }
@@ -256,7 +256,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals("--")) {
             returnNode.put(ctx, PostfixDecrementExpression.getExpression(expression));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitPostfixExpression.");
         }
     }
 
@@ -276,7 +276,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals("--")) {
             returnNode.put(ctx, PrefixDecrementExpression.getExpression(expression));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitUnaryExpression.");
         }
     }
 
@@ -322,7 +322,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals("%")) {
             returnNode.put(ctx, ModuloExpression.getExpression(lhs, rhs));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitMultiplicativeExpression.");
         }
     }
 
@@ -335,7 +335,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals("-")) {
             returnNode.put(ctx, SubtractionExpression.getExpression(lhs, rhs));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitAdditiveExpression.");
         }
     }
 
@@ -348,7 +348,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals(">>")) {
             returnNode.put(ctx, BitRightShiftExpression.getExpression(lhs, rhs));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitShiftExpression.");
         }
     }
 
@@ -365,7 +365,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals(">=")) {
             returnNode.put(ctx, GreaterThanOrEqualExpression.getExpression(lhs, rhs));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitRelationalExpression.");
         }
     }
 
@@ -378,7 +378,7 @@ public class TreeBuilderListener extends BaseListener {
         } else if (ctx.operator.getText().equals("!=")) {
             returnNode.put(ctx, NotEqualExpression.getExpression(lhs, rhs));
         } else {
-            throw new InternalError();
+            throw new InternalError("TreeBuilder:exitEqualityExpression");
         }
     }
 

@@ -16,7 +16,7 @@ public class GreaterThanOrEqualInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new GreaterThanOrEqualInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("GreaterThanOrEqualInstruction:getInstruction");
     }
 
     @Override

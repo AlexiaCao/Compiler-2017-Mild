@@ -29,7 +29,7 @@ public abstract class NASMTranslator extends Translator {
 	}
 
 	public String getFunctionName(Function function) {
-		if (function.name.equals("main") || function.name.startsWith("____builtin")) {
+		if (function.name.equals("main") || function.name.startsWith("__builtin")) {
 			return function.name;
 		} else {
 			return String.format("__%s_function", function.name);

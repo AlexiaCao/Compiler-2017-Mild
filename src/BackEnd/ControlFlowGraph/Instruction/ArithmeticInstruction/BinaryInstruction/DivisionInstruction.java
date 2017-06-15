@@ -16,7 +16,7 @@ public class DivisionInstruction extends BinaryInstruction {
         if (destination instanceof VirtualRegister) {
             return new DivisionInstruction((VirtualRegister)destination, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("DivisionInstruction:getInstruction.");
     }
 
     @Override

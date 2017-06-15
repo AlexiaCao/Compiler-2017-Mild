@@ -22,7 +22,7 @@ public class LoadInstruction extends MemoryInstruction {
         if (target instanceof VirtualRegister && address instanceof Address) {
             return new LoadInstruction((VirtualRegister)target, (Address)address);
         }
-        throw new InternalError();
+        throw new InternalError("LoadInstruction:getInstruction.");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class LoadInstruction extends MemoryInstruction {
         } else if (address.size == 4) {
             return "lw";
         }
-        throw new InternalError();
+        throw new InternalError("LoadInstruction:NASMName.");
     }
 
     @Override

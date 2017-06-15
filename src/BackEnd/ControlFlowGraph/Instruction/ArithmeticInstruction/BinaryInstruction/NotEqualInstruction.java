@@ -16,7 +16,7 @@ public class NotEqualInstruction extends BinaryInstruction {
         if (target instanceof VirtualRegister) {
             return new NotEqualInstruction((VirtualRegister)target, source1, source2).rebuild();
         }
-        throw new InternalError();
+        throw new InternalError("NotEqualInstruction.getInstruction.");
     }
 
     @Override
