@@ -9,7 +9,7 @@ public class Address extends Operand {
     public int size;
 
     public Address(VirtualRegister base, ImmediateValue offset, int size) {
-        if (size != 1 && size != 4) {
+        if (size != 8) {
             throw new InternalError("Address.");
         }
         this.base = base;
@@ -18,7 +18,7 @@ public class Address extends Operand {
     }
 
     public Address(VirtualRegister base, int size) {
-        if (size != 1 && size != 4) {
+        if (size != 8) {
             throw new InternalError("Address.");
         }
         this.base = base;

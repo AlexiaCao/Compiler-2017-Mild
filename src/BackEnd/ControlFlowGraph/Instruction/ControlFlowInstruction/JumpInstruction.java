@@ -40,6 +40,7 @@ public class JumpInstruction extends ControlFlowInstruction {
 
     @Override
     public String toString() {
-        return "jump " + to.block;
+        //System.err.println(to.block.toString());
+        return "jump " + to.block.toString();
     }
 }

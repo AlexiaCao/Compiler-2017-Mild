@@ -112,7 +112,7 @@ public class Environment {
                 }}
         ));
 
-        symbolTable.add("__builtin_string__parse_int", Function.getFunction(
+        symbolTable.add("__builtin_parseInt", Function.getFunction(
                 "__builtin_parseInt",
                 IntType.getType(),
                 new ArrayList<Symbol>() {{

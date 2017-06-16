@@ -42,7 +42,7 @@ public abstract class NASMTranslator extends Translator {
 
 	public String getPhysicalMemoryName(Operand register) {
 		if (register instanceof GlobalRegister) {
-			return "qword [rel " + "" + ((GlobalRegister) register).symbol.name + "]";
+			return "qword [rel " + "GlobalVariable_" + ((GlobalRegister) register).symbol.name + "]";
 		}else if (register instanceof ParameterRegister){
 			int offset = graph.frame.parameter.get(register);
 			return String.format("qword [rbp+(%d)]", offset);
@@ -67,7 +67,7 @@ public abstract class NASMTranslator extends Translator {
 		output.println("\tsection .data");
 		for (VirtualRegister register : Environment.registerTable.registers){
 			if (register instanceof GlobalRegister) {
-				output.printf("%s:\n\tdq 0\n", "" + ((GlobalRegister)register).symbol.name);
+				output.printf("%s:\n\tdq 0\n", "GlobalVariable_" + ((GlobalRegister)register).symbol.name);
 			}
 			else if (register instanceof StringRegister){
 				output.printf("__const_string_%d:\n\tdb ", register.identity);

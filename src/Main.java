@@ -17,6 +17,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -26,10 +27,10 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) throws Exception {
         Utility.arguments = new HashSet<>(Arrays.asList(args));
-        //InputStream is = new FileInputStream("program.txt");
+        InputStream is = new FileInputStream("program.txt");
         try {
-            new Main().compile(System.in, System.out);
-            //new Main().compile(is, System.out);
+            //new Main().compile(System.in, System.out);
+            new Main().compile(is, System.out);
         } catch (CompilationError e) {
             System.err.println(e.getMessage());
             System.exit(1);

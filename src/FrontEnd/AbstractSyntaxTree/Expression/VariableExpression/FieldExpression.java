@@ -44,29 +44,29 @@ public class FieldExpression extends Expression {
 		} else if (expression.type instanceof ArrayType) {
 			if (name.equals("size")) {
 				return new FieldExpression(
-						Environment.symbolTable.get("__builtin_array__size").type,
+						Environment.symbolTable.get("__builtin_getArraySize").type,
 						expression.isLeftValue, expression, name
 				);
 			}
 		} else if (expression.type instanceof StringType) {
 			if (name.equals("length")) {
 				return new FieldExpression(
-						Environment.symbolTable.get("__builtin_string__length").type,
+						Environment.symbolTable.get("__builtin_getStringLength").type,
 						expression.isLeftValue, expression, name
 				);
 			} else if (name.equals("ord")) {
 				return new FieldExpression(
-						Environment.symbolTable.get("__builtin_string__ord").type,
+						Environment.symbolTable.get("__builtin_ord").type,
 						expression.isLeftValue, expression, name
 				);
 			} else if (name.equals("substring")) {
 				return new FieldExpression(
-						Environment.symbolTable.get("__builtin_string__substring").type,
+						Environment.symbolTable.get("__builtin_getSubstring").type,
 						expression.isLeftValue, expression, name
 				);
 			} else if (name.equals("parseInt")) {
 				return new FieldExpression(
-						Environment.symbolTable.get("__builtin_string__parse_int").type,
+						Environment.symbolTable.get("__builtin_parseInt").type,
 						expression.isLeftValue, expression, name
 				);
 			}

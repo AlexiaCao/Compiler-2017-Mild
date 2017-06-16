@@ -50,6 +50,7 @@ public class AllocateInstruction extends MemoryInstruction {
 
     @Override
     public String toString() {
+        //System.err.println(destination.toString() + " " + size.toString() + "\n");
         return destination + " = alloc " + size;
     }
 }
