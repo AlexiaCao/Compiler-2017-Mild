@@ -10,6 +10,7 @@ import FrontEnd.AbstractSyntaxTree.Statement.BlockStatement;
 import FrontEnd.AbstractSyntaxTree.Type.BasicType.IntType;
 import FrontEnd.AbstractSyntaxTree.Type.Type;
 import Utility.Error.CompilationError;
+import Utility.Error.InternalError;
 import Utility.Utility;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class Function extends Type implements Node, Scope {
     }
 
     public static Function getFunction(String name, Type returnType, List<Symbol> parameters) {
+        if (name.equals("that")){
+            throw new CompilationError("the program cannot have a function named 'that'.");
+        }
         if (Environment.scopeTable.getClassScope() == null) {
             if (Environment.symbolTable.contains(name)) {
                 throw new CompilationError("the program cannot have two functions named \"" + name + "\"");

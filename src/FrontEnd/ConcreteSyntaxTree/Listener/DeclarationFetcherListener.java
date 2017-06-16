@@ -42,6 +42,7 @@ public class DeclarationFetcherListener extends BaseListener {
         }
         if (!isConstructorOrDestructor) {
             name = ctx.IDENTIFIER(0).getText();
+            if (name.equals("this")) throw new CompilationError("the function cannot named by 'this'");
             type = (Type)returnNode.get(ctx.type(0));
         } else if (isDestructor) {
             //	class destructor

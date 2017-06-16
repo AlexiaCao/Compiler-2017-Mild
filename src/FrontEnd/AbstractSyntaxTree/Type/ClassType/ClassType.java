@@ -37,6 +37,9 @@ public class ClassType extends Type implements Scope {
     }
 
     public void addMember(String name, Type type) {
+        if (name.equals("that")){
+            throw new CompilationError("the class cannot have a member named 'that'.");
+        }
         if (contains(name)) {
             throw new CompilationError("the class \"" + this.name + "\" cannot have two members named \"" + name + "\"");
         }
