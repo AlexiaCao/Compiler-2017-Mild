@@ -38,7 +38,7 @@ public class GreaterThanExpression extends BinaryExpression {
 				return BoolConstant.getConstant(literal1.compareTo(literal2) > 0);
 			}
 			return FunctionCallExpression.getExpression(
-					(Function)Environment.symbolTable.get("____builtin_string____greater_than").type,
+					(Function)Environment.symbolTable.get("__builtin_string_greaterThan").type,
 					new ArrayList<Expression>() {{
 						add(left);
 						add(right);

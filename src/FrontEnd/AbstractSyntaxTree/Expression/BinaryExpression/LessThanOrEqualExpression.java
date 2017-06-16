@@ -39,7 +39,7 @@ public class LessThanOrEqualExpression extends BinaryExpression {
 				return BoolConstant.getConstant(literal1.compareTo(literal2) <= 0);
 			}
 			return FunctionCallExpression.getExpression(
-					(Function)Environment.symbolTable.get("____builtin_string____less_than_or_equal_to").type,
+					(Function)Environment.symbolTable.get("__builtin_string_lessThanOrEqualTo").type,
 					new ArrayList<Expression>() {{
 						add(left);
 						add(right);

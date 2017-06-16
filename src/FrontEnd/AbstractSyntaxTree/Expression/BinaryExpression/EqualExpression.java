@@ -44,7 +44,7 @@ public class EqualExpression extends BinaryExpression {
 		}
 		if (left.type instanceof StringType && right.type instanceof StringType) {
 			return FunctionCallExpression.getExpression(
-					(Function)Environment.symbolTable.get("____builtin_string____equal_to").type,
+					(Function)Environment.symbolTable.get("__builtin_string_equalTo").type,
 					new ArrayList<Expression>() {{
 						add(left);
 						add(right);

@@ -36,7 +36,7 @@ public class AdditionExpression extends BinaryExpression {
                 return StringConstant.getConstant(literal1 + literal2);
             }
             return FunctionCallExpression.getExpression(
-                    (Function)Environment.symbolTable.get("____builtin_string____concatenate").type,
+                    (Function)Environment.symbolTable.get("__builtin_string_concat").type,
                     new ArrayList<Expression>() {{
                         add(left);
                         add(right);
