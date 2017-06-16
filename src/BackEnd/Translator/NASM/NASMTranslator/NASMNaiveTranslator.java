@@ -61,8 +61,9 @@ public class NASMNaiveTranslator extends NASMTranslator {
 				}
 				if (instruction instanceof FunctionInstruction) System.err.println("FunctionInstruction");
 				if (instruction instanceof MemoryInstruction) System.err.println("MemoryInstruction");*/
-				output.printf(";%s\n", instruction.toString());
-				//output.printf("\t%s")
+
+				output.printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t;%s\n", instruction);
+
 				if (instruction instanceof  LabelInstruction) {
 					output.printf("%s:\n", getBlockName(((LabelInstruction) instruction).block));
 				}else if (instruction instanceof ArithmeticInstruction) {

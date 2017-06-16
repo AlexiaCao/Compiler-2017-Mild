@@ -24,7 +24,7 @@ import FrontEnd.AbstractSyntaxTree.Function;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-/*
+
 public class NASMBasicTranslator extends NASMTranslator{
     public Allocator allocator;
 
@@ -37,7 +37,7 @@ public class NASMBasicTranslator extends NASMTranslator{
             return allocator.mapping.get(from);
         }
         else {
-            output.printf("\tmov    %s, %s\n", to, getPhysicalMemoryName(from))
+            output.printf("\tmov    %s, %s\n", to, getPhysicalMemoryName(from));
             return to;
         }
     }
@@ -53,7 +53,7 @@ public class NASMBasicTranslator extends NASMTranslator{
         if (allocator.mapping.containsKey(to)) {
             return;
         } else{
-            output.printf("\tmov    %s,%s\n", getPhysicalMemoryName(to), from)
+            output.printf("\tmov    %s,%s\n", getPhysicalMemoryName(to), from);
         }
     }
 
@@ -61,7 +61,7 @@ public class NASMBasicTranslator extends NASMTranslator{
         if (allocator.mapping.containsKey(to)) {
             output.printf("\tmov    %s, %s\n", allocator.mapping.get(to), from);
         } else{
-            output.printf("\tmov    %s,%s\n", getPhysicalMemoryName(to), from)
+            output.printf("\tmov    %s,%s\n", getPhysicalMemoryName(to), from);
         }
 
     }
@@ -75,20 +75,20 @@ public class NASMBasicTranslator extends NASMTranslator{
     }
 
     public void protectScene() {
-        for (PhysicalRegister physicalRegistor : allocator.getUsedPhysicalRegisters()) {
-            if (!physicalRegistor.callPreserved) {
+        for (PhysicalRegister physicalRegister : allocator.getUsedPhysicalRegisters()) {
+            if (!physicalRegister.callPreserved) {
                 output.printf("\tmov    qword [rbp + (%d)], %s\n",
-                        -graph.frame.size - NASMRegister.size() * (physicalRegistor.identity + 1),
-                        physicalRegistor.name);
+                        -graph.frame.size - NASMRegister.size() * (physicalRegister.identity + 1),
+                        physicalRegister.name);
             }
         }
     }
 
     public void restoreScene() {
-        for (PhysicalRegister physicalRegistor : allocator.getUsedPhysicalRegisters()) {
-            if (!physicalRegistor.callPreserved) {
+        for (PhysicalRegister physicalRegister : allocator.getUsedPhysicalRegisters()) {
+            if (!physicalRegister.callPreserved) {
                 output.printf("\tmov    %s, qword [rbp + (%d)]\n",
-                        physicalRegistor.name,
+                        physicalRegister.name,
                         -graph.frame.size - NASMRegister.size() * (physicalRegister.identity + 1));
             }
         }
@@ -121,11 +121,11 @@ public class NASMBasicTranslator extends NASMTranslator{
             output.printf("\tmov    qword [rbp-48], r9\n");
         }
         
-        for (PhysicalRegister physicalRegistor : allocator.getUsedPhysicalRegisters()) {
-            if (physicalRegistor.callPreserved) {
+        for (PhysicalRegister physicalRegister : allocator.getUsedPhysicalRegisters()) {
+            if (physicalRegister.callPreserved) {
                 output.printf("\tmov    qword [rbp + (%d)], %s\n",
-                        -graph.frame.size - (physicalRegistor.identity + 1) * NASMRegister.size(),
-                        physicalRegistor);
+                        -graph.frame.size - (physicalRegister.identity + 1) * NASMRegister.size(),
+                        physicalRegister);
             }
         }
 
@@ -135,7 +135,7 @@ public class NASMBasicTranslator extends NASMTranslator{
                 output.printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t;%s\n", instruction);
                 if (instruction instanceof ArithmeticInstruction) {
                     if (instruction instanceof UnaryInstruction) {
-                        PhysicalRegister a = loadToRead(((UnaryInstruction) instruction).operand, NASMRegister.rax);
+                        PhysicalRegister a = loadToRead(((UnaryInstruction) instruction).source, NASMRegister.rax);
                         PhysicalRegister b = loadToWrite(((UnaryInstruction) instruction).destination, NASMRegister.rax);
                         //output.printf("\tmov    %s, %s\n", b, a);
                         moveFilter(b, a);
@@ -146,8 +146,8 @@ public class NASMBasicTranslator extends NASMTranslator{
                         }
                         store(b, ((UnaryInstruction) instruction).destination);
                     } else if (instruction instanceof BinaryInstruction) {
-                        PhysicalRegister a = loadToRead(((BinaryInstruction) instruction).operand1, NASMRegister.r10);
-                        PhysicalRegister b = loadToRead(((BinaryInstruction) instruction).operand2, NASMRegister.r11);
+                        PhysicalRegister a = loadToRead(((BinaryInstruction) instruction).source1, NASMRegister.r10);
+                        PhysicalRegister b = loadToRead(((BinaryInstruction) instruction).source2, NASMRegister.r11);
                         PhysicalRegister c = loadToWrite(((BinaryInstruction) instruction).destination, NASMRegister.rax);
                         if (!(instruction instanceof AdditionInstruction)) {
                             moveFilter(c, a);
@@ -213,7 +213,7 @@ public class NASMBasicTranslator extends NASMTranslator{
                     }
                 } else if (instruction instanceof MemoryInstruction) {
                     if (instruction instanceof MoveInstruction) {
-                        PhysicalRegister a = loadToRead(((MoveInstruction) instruction).operand, NASMRegister.rax);
+                        PhysicalRegister a = loadToRead(((MoveInstruction) instruction).source, NASMRegister.rax);
                         move(a, ((MoveInstruction) instruction).destination);
                     } else if (instruction instanceof AllocateInstruction) {
                         PhysicalRegister sizeR = loadToRead(((AllocateInstruction) instruction).size, NASMRegister.rax);
@@ -228,17 +228,17 @@ public class NASMBasicTranslator extends NASMTranslator{
                         PhysicalRegister destR = loadToWrite(((LoadInstruction) instruction).destination, NASMRegister.r10);
                         //output.printf("\tmov    %s, %s\n", NASMRegister.r11, baseR);
                         moveFilter(NASMRegister.r11, baseR);
-                        if (((LoadInstruction) instruction).address.offset.value != 0) {
+                        if (((LoadInstruction) instruction).address.offset.literal != 0) {
                             output.printf("\tadd    %s, %s\n", NASMRegister.r11, ((LoadInstruction) instruction).address.offset);
                         }
                         output.printf("\tmov    %s, qword [%s]\n", destR, NASMRegister.r11);
                         store(destR, ((LoadInstruction) instruction).destination);
                     } else if (instruction instanceof StoreInstruction) {
                         PhysicalRegister baseR = loadToRead(((StoreInstruction) instruction).address.base, NASMRegister.r10);
-                        PhysicalRegister a = loadToRead(((StoreInstruction) instruction).operand, NASMRegister.rax);
+                        PhysicalRegister a = loadToRead(((StoreInstruction) instruction).source, NASMRegister.rax);
                         //output.printf("\tmov    %s, %s\n", NASMRegister.r11, baseR);
                         moveFilter(NASMRegister.r11, baseR);
-                        if (((StoreInstruction) instruction).address.offset.value != 0) {
+                        if (((StoreInstruction) instruction).address.offset.literal != 0) {
                             output.printf("\tadd    %s, %s\n", NASMRegister.r11, ((StoreInstruction) instruction).address.offset);
                         }
                         output.printf("\tmov    qword [%s], %s\n", NASMRegister.r11, a);
@@ -254,7 +254,7 @@ public class NASMBasicTranslator extends NASMTranslator{
                     }
                 } else if (instruction instanceof FunctionInstruction) {
                     if (instruction instanceof ReturnInstruction) {
-                        PhysicalRegister a = loadToRead(((ReturnInstruction) instruction).operand, NASMRegister.rax);
+                        PhysicalRegister a = loadToRead(((ReturnInstruction) instruction).source, NASMRegister.rax);
                         //output.printf("\tmov    %s, %s\n", NASMRegister.rax, a);
                         moveFilter(NASMRegister.rax, a);
                         output.printf("\tjmp    %s\n", getBlockName(graph.exit));
@@ -299,12 +299,12 @@ public class NASMBasicTranslator extends NASMTranslator{
                 }
             }
         }
-        //restoreScene();
-        for (PhysicalRegister physicalRegistor : allocator.getUsedPhysicalRegisters()) {
-            if (physicalRegistor.callPreserved) {
+        
+        for (PhysicalRegister physicalRegister : allocator.getUsedPhysicalRegisters()) {
+            if (physicalRegister.callPreserved) {
                 output.printf("\tmov    %s, qword [rbp + (%d)]\n",
-                        physicalRegistor,
-                        -graph.frame.size - (physicalRegistor.identity + 1) * NASMRegister.size());
+                        physicalRegister,
+                        -graph.frame.size - (physicalRegister.identity + 1) * NASMRegister.size());
             }
         }
         output.printf("\tleave\n");
@@ -312,4 +312,3 @@ public class NASMBasicTranslator extends NASMTranslator{
     }
 
 }
-*/

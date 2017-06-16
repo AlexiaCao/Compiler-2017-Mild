@@ -1,3 +1,4 @@
+import BackEnd.Translator.NASM.NASMTranslator.NASMBasicTranslator;
 import Environment.Environment;
 import BackEnd.Allocator.GlobalRegisterAllocator.GlobalRegisterAllocator;
 import BackEnd.ControlFlowGraph.Graph;
@@ -67,10 +68,9 @@ public class Main {
         for (Function function : Environment.program.functions) {
           //  System.out.println(function.name);
             function.graph = new Graph(function);
-            //function.allocator = new GlobalRegisterAllocator(function);
+            function.allocator = new GlobalRegisterAllocator(function);
         }
 
-        new NASMNaiveTranslator(new PrintStream(output)).translate();
+        new NASMBasicTranslator(new PrintStream(output)).translate();
     }
-
 }
