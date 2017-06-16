@@ -11,7 +11,7 @@ public class BoolType extends Type {
 
     @Override
     public int size() {
-        return 1;
+        return 8;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class Address extends Operand {
 
     public Address(VirtualRegister base, int size) {
         if (size != 8) {
+            System.err.println(size);
             throw new InternalError("Address.");
         }
         this.base = base;
