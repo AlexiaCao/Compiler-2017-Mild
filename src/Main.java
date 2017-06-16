@@ -1,8 +1,7 @@
 import BackEnd.Translator.NASM.NASMTranslator.NASMBasicTranslator;
 import Environment.Environment;
-import BackEnd.Allocator.GlobalRegisterAllocator.GlobalRegisterAllocator;
+import BackEnd.Allocator.GlobalRegisterAllocator.RegisterAllocator;
 import BackEnd.ControlFlowGraph.Graph;
-import BackEnd.Translator.NASM.NASMTranslator.NASMNaiveTranslator;
 import FrontEnd.AbstractSyntaxTree.Function;
 import FrontEnd.ConcreteSyntaxTree.Listener.ClassFetcherListener;
 import FrontEnd.ConcreteSyntaxTree.Listener.DeclarationFetcherListener;
@@ -18,7 +17,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -68,7 +66,7 @@ public class Main {
         for (Function function : Environment.program.functions) {
           //  System.out.println(function.name);
             function.graph = new Graph(function);
-            function.allocator = new GlobalRegisterAllocator(function);
+            function.allocator = new RegisterAllocator(function);
         }
 
         new NASMBasicTranslator(new PrintStream(output)).translate();

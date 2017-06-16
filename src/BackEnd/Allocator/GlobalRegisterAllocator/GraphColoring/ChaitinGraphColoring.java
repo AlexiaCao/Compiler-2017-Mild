@@ -2,7 +2,9 @@ package BackEnd.Allocator.GlobalRegisterAllocator.GraphColoring;
 
 import BackEnd.Allocator.GlobalRegisterAllocator.InterferenceGraph;
 import BackEnd.Allocator.PhysicalRegister;
+import BackEnd.ControlFlowGraph.Operand.VirtualRegister.VariableRegister.TemporaryRegister;
 import BackEnd.ControlFlowGraph.Operand.VirtualRegister.VirtualRegister;
+import Utility.Error.InternalError;
 
 import java.util.*;
 
@@ -16,35 +18,51 @@ public class ChaitinGraphColoring extends GraphColoring {
         degree = new HashMap<>();
     }
 
-    public Map<VirtualRegister, PhysicalRegister> analysis() {
+    public Map<VirtualRegister, PhysicalRegister> analysis() throws Exception {
         for (VirtualRegister vertex : graph.vertices) {
             vertices.add(vertex);
             degree.put(vertex, graph.forbids.get(vertex).size());
         }
         Stack<VirtualRegister> stack = new Stack<>();
         while (stack.size() < graph.vertices.size()) {
-            int origin = stack.size();
+            boolean modify = false;
             for (VirtualRegister vertex : vertices) {
-                if (degree.get(vertex) < InterferenceGraph.color.size()) {
+                if (degree.get(vertex) < InterferenceGraph.colors.size()) {
                     stack.add(vertex);
                     remove(vertex);
+                    modify = true;
                     break;
                 }
             }
-            if (stack.size() != origin) {
-                continue;
-            }
-            for (VirtualRegister vertex : vertices) {
-                if (degree.get(vertex) >= InterferenceGraph.color.size()) {
-                    stack.add(vertex);
-                    remove(vertex);
-                    break;
+            if (!modify){
+                int MAXdegree = -1;
+                VirtualRegister register = null;
+                for (VirtualRegister vertex : vertices) {
+                    if (degree.get(vertex) > MAXdegree) {
+                        MAXdegree = degree.get(vertex);
+                        register = vertex;
+                    }
+                }
+                if (register != null) {
+                    stack.add(register);
+                    remove(register);
+                } else {
+                    throw new InternalError("Internal Error!!");
                 }
             }
         }
-        while (!stack.isEmpty()) {
+        while (!stack.empty()) {
             color(stack.pop());
         }
+
+        Map<VirtualRegister, PhysicalRegister> old = mapping;
+        mapping = new HashMap<>();
+        for (VirtualRegister register : old.keySet()) {
+            if (register instanceof TemporaryRegister) {
+                mapping.put(register, old.get(register));
+            }
+        }
+
         return mapping;
     }
 

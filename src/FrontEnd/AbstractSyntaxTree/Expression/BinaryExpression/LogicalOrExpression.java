@@ -47,11 +47,13 @@ public class LogicalOrExpression extends BinaryExpression {
 		left.emit(instructions);
 		left.load(instructions);
 		instructions.add(BranchInstruction.getInstruction(left.operand, trueLabel, falseLabel));
+
 		instructions.add(falseLabel);
 		right.emit(instructions);
 		right.load(instructions);
-		operand = right.operand;
+		instructions.add(MoveInstruction.getInstruction(operand, right.operand));
 		instructions.add(JumpInstruction.getInstruction(mergeLabel));
+
 		instructions.add(trueLabel);
 		instructions.add(MoveInstruction.getInstruction(operand, new ImmediateValue(1)));
 		instructions.add(JumpInstruction.getInstruction(mergeLabel));

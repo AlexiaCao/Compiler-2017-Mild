@@ -6,6 +6,7 @@ import BackEnd.ControlFlowGraph.Instruction.ControlFlowInstruction.BranchInstruc
 import BackEnd.ControlFlowGraph.Instruction.ControlFlowInstruction.JumpInstruction;
 import BackEnd.ControlFlowGraph.Instruction.MemoryInstruction.MoveInstruction;
 import BackEnd.ControlFlowGraph.Operand.ImmediateValue;
+import Environment.Environment;
 import FrontEnd.AbstractSyntaxTree.Expression.ConstantExpression.BoolConstant;
 import FrontEnd.AbstractSyntaxTree.Expression.Expression;
 import FrontEnd.AbstractSyntaxTree.Type.BasicType.BoolType;
@@ -42,14 +43,17 @@ public class LogicalAndExpression extends BinaryExpression {
 		LabelInstruction falseLabel = LabelInstruction.getInstruction("logical_false");
 		LabelInstruction mergeLabel = LabelInstruction.getInstruction("logical_merge");
 
+		operand = Environment.registerTable.addTemporaryRegister();
 		left.emit(instructions);
 		left.load(instructions);
 		instructions.add(BranchInstruction.getInstruction(left.operand, trueLabel, falseLabel));
+
 		instructions.add(trueLabel);
 		right.emit(instructions);
 		right.load(instructions);
-		operand = right.operand;
+		instructions.add(MoveInstruction.getInstruction(operand, right.operand));
 		instructions.add(JumpInstruction.getInstruction(mergeLabel));
+
 		instructions.add(falseLabel);
 		instructions.add(MoveInstruction.getInstruction(operand, new ImmediateValue(0)));
 		instructions.add(JumpInstruction.getInstruction(mergeLabel));

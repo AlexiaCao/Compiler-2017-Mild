@@ -57,6 +57,14 @@ public class Environment {
                 }}
         ));
 
+        symbolTable.add("printInt", Function.getFunction(
+                "__builtin_printInt",
+                VoidType.getType(),
+                new ArrayList<Symbol>() {{
+                    add(new Symbol("int", IntType.getType()));
+                }}
+        ));
+
         symbolTable.add("getString", Function.getFunction(
                 "__builtin_getString",
                 StringType.getType(),
@@ -171,13 +179,5 @@ public class Environment {
                     add(new Symbol("rhs", StringType.getType()));
                 }}
         ));
-        /*symbolTable.add("____builtin_string____not_equal_to", Function.getFunction(
-                "____builtin_string____not_equal_to",
-                BoolType.getType(),
-                new ArrayList<Symbol>() {{
-                    add(new Symbol("lhs", StringType.getType()));
-                    add(new Symbol("rhs", StringType.getType()));
-                }}
-        ));*/
     }
 }

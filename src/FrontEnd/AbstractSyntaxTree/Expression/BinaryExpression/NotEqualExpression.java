@@ -43,15 +43,6 @@ public class NotEqualExpression extends BinaryExpression {
 			String literal2 = ((StringConstant)right).literal;
 			return BoolConstant.getConstant(!literal1.equals(literal2));
 		}
-		if (left.type instanceof StringType && right.type instanceof StringType) {
-			return FunctionCallExpression.getExpression(
-					(Function)Environment.symbolTable.get("____builtin_string____not_equal_to").type,
-					new ArrayList<Expression>() {{
-						add(left);
-						add(right);
-					}}
-			);
-		}
 		return new NotEqualExpression(BoolType.getType(), false, left, right);
 	}
 

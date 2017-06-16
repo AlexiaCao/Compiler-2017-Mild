@@ -18,8 +18,6 @@ public class Block {
     public LabelInstruction label;
     public List<Instruction> instructions, phiFunctions;
     public List<Block> successors, predecessors;
-    public Dominance dominance;
-    public PostDominance postDominance;
     public Liveliness liveliness;
 
     public Block(Function function, String name, int identity, LabelInstruction label) {
@@ -31,8 +29,6 @@ public class Block {
         this.phiFunctions = new ArrayList<>();
         this.successors = new ArrayList<>();
         this.predecessors = new ArrayList<>();
-        this.dominance = new Dominance();
-        this.postDominance = new PostDominance();
         this.liveliness = new Liveliness();
     }
 
@@ -60,30 +56,6 @@ public class Block {
         phiFunctions.forEach(instruction -> stringBuilder.append(instruction.toString(indents + 1)));
         instructions.forEach(instruction -> stringBuilder.append(instruction.toString(indents + 1)));
         return stringBuilder.toString();
-    }
-
-    public class Dominance {
-        public Block dominator;
-        public List<Block> frontiers;
-        public List<Block> children;
-
-        public Dominance() {
-            this.dominator = null;
-            this.frontiers = new ArrayList<>();
-            this.children = new ArrayList<>();
-        }
-    }
-
-    public class PostDominance {
-        public Block dominator;
-        public List<Block> frontiers;
-        public List<Block> children;
-
-        public PostDominance() {
-            this.dominator = null;
-            this.frontiers = new ArrayList<>();
-            this.children = new ArrayList<>();
-        }
     }
 
     public class Liveliness {

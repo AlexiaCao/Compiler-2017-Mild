@@ -104,7 +104,7 @@ public class FunctionCallExpression extends Expression {
     }
 
     private boolean peephole(List<Instruction> instructions) {
-        if (function.name.startsWith("____builtin____print")) {
+        if (function.name.startsWith("__builtin_print")) {
             if (parameters.size() != 1) {
                 throw new InternalError();
             }
@@ -112,11 +112,11 @@ public class FunctionCallExpression extends Expression {
             if (parameter instanceof FunctionCallExpression) {
                 FunctionCallExpression call = (FunctionCallExpression)parameter;
                 List<Expression> expressions = new ArrayList<>();
-                if (call.function.name.equals("____builtin_string____concatenate")) {
+                if (call.function.name.equals("__builtin_string_concat")) {
                     Expression current = call;
                     while (current instanceof FunctionCallExpression) {
                         FunctionCallExpression now = (FunctionCallExpression)current;
-                        if (!now.function.name.equals("____builtin_string____concatenate")) {
+                        if (!now.function.name.equals("__builtin_string_concat")) {
                             break;
                         }
                         current = now.parameters.get(0);
@@ -130,7 +130,7 @@ public class FunctionCallExpression extends Expression {
                 for (int i = 0; i < size; ++i) {
                     if (expressions.get(i) instanceof FunctionCallExpression) {
                         FunctionCallExpression sub = (FunctionCallExpression)expressions.get(i);
-                        if (sub.function.name.equals("____builtin____to_string")) {
+                        if (sub.function.name.equals("__builtin_toString")) {
                             emit(instructions, "printInt", sub.parameters.get(0));
                             continue;
                         }

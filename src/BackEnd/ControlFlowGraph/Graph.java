@@ -38,6 +38,7 @@ public class Graph {
         function.entry = LabelInstruction.getInstruction("entry");
         function.exit = LabelInstruction.getInstruction("exit");
         instructions.add(function.enter);
+
         if (function.name.equals("main")) {
             for (VariableDeclarationStatement declaration : Environment.program.globalVariables) {
                 declaration.emit(instructions);
@@ -62,7 +63,6 @@ public class Graph {
                     }
                     block.instructions.add(instructions.get(j));
                     if (instructions.get(j) instanceof ControlFlowInstruction) {
-                        //	eliminate unreachable codes after this instruction
                         break;
                     }
                 }
@@ -80,14 +80,13 @@ public class Graph {
         refresh();
     }
 
-    public Graph refresh() {
+    void refresh(){
         refreshGraph();
         analysisLiveliness();
         analysisFrame();
-        return this;
     }
 
-    private void refreshGraph() {
+    public void refreshGraph() {
         for (Block block : blocks) {
             block.successors = new ArrayList<>();
             block.predecessors = new ArrayList<>();
@@ -113,7 +112,7 @@ public class Graph {
         }
     }
 
-    private List<Block> depthFirstSearch(Block block, Set<Block> visit) {
+    public List<Block> depthFirstSearch(Block block, Set<Block> visit) {
         visit.add(block);
         List<Block> list = new ArrayList<Block>() {{
             add(block);
@@ -133,7 +132,7 @@ public class Graph {
         return list;
     }
 
-    private void analysisLiveliness() {
+    public void analysisLiveliness() {
         for (Block block : blocks) {
             block.liveliness.used = new ArrayList<>();
             block.liveliness.defined = new ArrayList<>();
@@ -160,7 +159,7 @@ public class Graph {
                     block.liveliness.used.forEach(this::add);
                 }};
             }
-            boolean modified = false;
+            boolean modifiy = false;
             for (Block block : blocks) {
                 Set<VirtualRegister> origin = block.liveliness.liveOut;
                 block.liveliness.liveOut = new HashSet<VirtualRegister>() {{
@@ -169,25 +168,25 @@ public class Graph {
                     }
                 }};
                 if (!block.liveliness.liveOut.equals(origin)) {
-                    modified = true;
+                    modifiy = true;
                 }
             }
-            if (!modified) {
+            if (!modifiy) {
                 break;
             }
         }
     }
 
-    private void analysisFrame() {
+    public void analysisFrame() {
         Set<VirtualRegister> registers = new HashSet<VirtualRegister>() {{
             for (Block block : blocks) {
                 for (Instruction instruction : block.instructions) {
-                    for (VirtualRegister register : instruction.getUsedRegisters()) {
+                    for (VirtualRegister register : instruction.getDefinedRegisters()) {
                         if (register instanceof TemporaryRegister) {
                             add(register);
                         }
                     }
-                    for (VirtualRegister register : instruction.getDefinedRegisters()) {
+                    for (VirtualRegister register : instruction.getUsedRegisters()) {
                         if (register instanceof TemporaryRegister) {
                             add(register);
                         }
@@ -197,17 +196,19 @@ public class Graph {
         }};
         frame = new Frame();
         frame.size += NASMRegister.size() * 8;
+        int tmp = frame.size;
         for (VirtualRegister register : registers) {
             frame.temporary.put(register, -frame.size);
             frame.size += NASMRegister.size();
         }
-        for (int i = 0; i < function.parameters.size(); i++) {
+
+        for (int i = 0; i < 6 && i < function.parameters.size(); i++) {
             Symbol parameter = function.parameters.get(i);
-            if (i < 6) {
-                frame.parameter.put(parameter.register, -(i + 1) * NASMRegister.size());
-            } else {
-                frame.parameter.put(parameter.register, (i - 6) * NASMRegister.size() + 16);
-            }
+            frame.parameter.put(parameter.register, -(i + 1) * NASMRegister.size());
+        }
+        for (int i = 6; i < function.parameters.size(); i++) {
+            Symbol parameter = function.parameters.get(i);
+            frame.parameter.put(parameter.register, (i - 6) * NASMRegister.size() + 16);
         }
     }
 
@@ -215,25 +216,6 @@ public class Graph {
         Block block = new Block(function, name, blocks.size(), label);
         blocks.add(block);
         return block;
-    }
-
-    public Set<VirtualRegister> getAllRegisters() {
-        return new HashSet<VirtualRegister>() {{
-            for (Block block : blocks) {
-                addAll(block.getAllRegisters());
-            }
-        }};
-    }
-
-    public boolean containsCall() {
-        for (Block block : blocks) {
-            for (Instruction instruction : block.instructions) {
-                if (instruction instanceof CallInstruction) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public String toString(int indents) {

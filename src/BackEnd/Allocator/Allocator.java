@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class Allocator {
+public class Allocator {
     public Function function;
     public Map<VirtualRegister, PhysicalRegister> mapping;
 
-    protected Allocator(Function function) {
+    public Allocator(Function function) {
         this.function = function;
         this.mapping = new HashMap<>();
     }
@@ -21,9 +21,7 @@ public abstract class Allocator {
         return new HashSet<PhysicalRegister>() {{
             for (VirtualRegister virtual : mapping.keySet()) {
                 PhysicalRegister physical = mapping.get(virtual);
-                if (physical != null) {
                     add(physical);
-                }
             }
         }};
     }

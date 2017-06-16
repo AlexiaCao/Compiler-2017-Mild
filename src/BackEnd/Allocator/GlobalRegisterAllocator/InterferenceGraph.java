@@ -8,7 +8,7 @@ import BackEnd.Translator.NASM.NASMRegister;
 import java.util.*;
 
 public class InterferenceGraph {
-    public static List<PhysicalRegister> color = new ArrayList<PhysicalRegister>() {{
+    public static List<PhysicalRegister> colors = new ArrayList<PhysicalRegister>() {{
         add(NASMRegister.r12);
         add(NASMRegister.r13);
         add(NASMRegister.r14);
@@ -24,7 +24,7 @@ public class InterferenceGraph {
     public Map<VirtualRegister, Set<VirtualRegister>> forbids;
     public Map<VirtualRegister, Set<VirtualRegister>> recommends;
 
-    InterferenceGraph() {
+    public InterferenceGraph() {
         vertices = new HashSet<>();
         forbids = new HashMap<>();
         recommends = new HashMap<>();

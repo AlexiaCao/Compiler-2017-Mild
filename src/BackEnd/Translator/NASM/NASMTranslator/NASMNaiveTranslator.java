@@ -53,15 +53,6 @@ public class NASMNaiveTranslator extends NASMTranslator {
 		for (Block block :graph.blocks) {
 			output.printf("%s:\n", getBlockName(block));
 			for (Instruction instruction : block.instructions) {
-				/*if (instruction instanceof ArithmeticInstruction) System.err.println("ArithmeticInstruction");
-				if (instruction instanceof UnaryInstruction) System.err.println("UnaryInstruction");
-				if (instruction instanceof ControlFlowInstruction) {
-					if (instruction instanceof BranchInstruction) System.err.println("BranchInstruction");
-					if (instruction instanceof JumpInstruction) System.err.println("JumpInstruction");
-				}
-				if (instruction instanceof FunctionInstruction) System.err.println("FunctionInstruction");
-				if (instruction instanceof MemoryInstruction) System.err.println("MemoryInstruction");*/
-
 				output.printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t;%s\n", instruction);
 
 				if (instruction instanceof  LabelInstruction) {

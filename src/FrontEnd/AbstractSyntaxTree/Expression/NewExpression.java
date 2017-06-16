@@ -83,7 +83,6 @@ public class NewExpression extends Expression {
         if (type instanceof ClassType) {
             ClassType classType = (ClassType)type;
             instructions.add(AllocateInstruction.getInstruction(operand, new ImmediateValue(classType.allocateSize)));
-            //	handle the class members' initial values
             classType.memberVariables.forEach((name, member) -> {
                 Address address = new Address((VirtualRegister)operand, new ImmediateValue(member.offset), member.type.size());
                 if (member.expression != null) {
@@ -104,18 +103,18 @@ public class NewExpression extends Expression {
                     constructor = classType.constructors.get(parameterTypes);
                 }
             }
-            if (constructor != null) {
-                //	handle the class constructor
+            if (classType.destructor != null) {
                 List<Operand> operands = new ArrayList<Operand>() {{
                     add(operand);
-                    parameters.forEach(parameter -> {
+                    /*parameters.forEach(parameter -> {
                         parameter.emit(instructions);
                         parameter.load(instructions);
                         add(parameter.operand);
-                    });
+                    });*/
                 }};
                 instructions.add(CallInstruction.getInstruction(null, constructor, operands));
             }
+
         } else if (type instanceof ArrayType) {
             ArrayType arrayType = (ArrayType)type;
             VirtualRegister size = Environment.registerTable.addTemporaryRegister();
@@ -124,7 +123,7 @@ public class NewExpression extends Expression {
             instructions.add(AllocateInstruction.getInstruction(operand, size));
             instructions.add(StoreInstruction.getInstruction(expressions.get(0).operand, new Address((VirtualRegister)operand, IntType.getType().size())));
             instructions.add(AdditionInstruction.getInstruction(operand, operand, new ImmediateValue(IntType.getType().size())));
-            if (expressions.size() == 1 && arrayType.baseType instanceof ClassType || expressions.size() > 1 && expressions.get(1) != null) {
+            if ((expressions.size() > 1 && expressions.get(1) != null) || (((ArrayType) type).dimension == 1 && (((ArrayType) type).baseType instanceof ClassType))) {
                 LabelInstruction conditionLabel = LabelInstruction.getInstruction("new_arrayType_condition");
                 LabelInstruction bodyLabel = LabelInstruction.getInstruction("new_arrayType_body");
                 LabelInstruction loop = LabelInstruction.getInstruction("new_arrayType_loop");
@@ -167,7 +166,7 @@ public class NewExpression extends Expression {
                 instructions.add(merge);
             }
         } else {
-            throw new InternalError();
+            throw new InternalError("NewExpression:emit error!");
         }
     }
 }

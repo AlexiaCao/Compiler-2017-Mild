@@ -25,26 +25,21 @@ abstract class GraphColoring {
                     add(mapping.get(neighbor));
                 }
             }
-            add(null);
         }};
         for (VirtualRegister neighbor : graph.recommends.get(vertex)) {
-            if (!mapping.containsKey(neighbor)) {
-                continue;
+            if (mapping.containsKey(neighbor)) {
+                PhysicalRegister color = mapping.get(neighbor);
+                if (!mapping.containsKey(vertex) && !used.contains(color)) {
+                    mapping.put(vertex, color);
+                    break;
+                }
             }
-            PhysicalRegister color = mapping.get(neighbor);
+        }
+        for (PhysicalRegister color : InterferenceGraph.colors) {
             if (!mapping.containsKey(vertex) && !used.contains(color)) {
                 mapping.put(vertex, color);
                 break;
             }
-        }
-        for (PhysicalRegister color : InterferenceGraph.color) {
-            if (!mapping.containsKey(vertex) && !used.contains(color)) {
-                mapping.put(vertex, color);
-                break;
-            }
-        }
-        if (!mapping.containsKey(vertex)) {
-            mapping.put(vertex, null);
         }
     }
 }
