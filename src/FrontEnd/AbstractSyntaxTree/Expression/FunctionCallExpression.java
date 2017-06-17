@@ -87,72 +87,17 @@ public class FunctionCallExpression extends Expression {
 
     @Override
     public void emit(List<Instruction> instructions) {
-        if (!peephole(instructions)) {
-            List<Operand> operands = new ArrayList<>();
-            for (Expression parameter : parameters) {
-                parameter.emit(instructions);
-                parameter.load(instructions);
-                operands.add(parameter.operand);
-            }
-            if (type instanceof VoidType) {
-                instructions.add(CallInstruction.getInstruction(null, function, operands));
-            } else {
-                operand = Environment.registerTable.addTemporaryRegister();
-                instructions.add(CallInstruction.getInstruction(operand, function, operands));
-            }
+        List<Operand> operands = new ArrayList<>();
+        for (Expression parameter : parameters) {
+            parameter.emit(instructions);
+            parameter.load(instructions);
+            operands.add(parameter.operand);
         }
-    }
-
-    private boolean peephole(List<Instruction> instructions) {
-        if (function.name.startsWith("__builtin_print")) {
-            if (parameters.size() != 1) {
-                throw new InternalError();
-            }
-            Expression parameter = parameters.get(0);
-            if (parameter instanceof FunctionCallExpression) {
-                FunctionCallExpression call = (FunctionCallExpression)parameter;
-                List<Expression> expressions = new ArrayList<>();
-                if (call.function.name.equals("__builtin_string_concat")) {
-                    Expression current = call;
-                    while (current instanceof FunctionCallExpression) {
-                        FunctionCallExpression now = (FunctionCallExpression)current;
-                        if (!now.function.name.equals("__builtin_string_concat")) {
-                            break;
-                        }
-                        current = now.parameters.get(0);
-                        expressions.add(0, now.parameters.get(1));
-                    }
-                    expressions.add(0, current);
-                } else {
-                    expressions.add(call);
-                }
-                int size = expressions.size() - (function.name.endsWith("ln") ? 1 : 0);
-                for (int i = 0; i < size; ++i) {
-                    if (expressions.get(i) instanceof FunctionCallExpression) {
-                        FunctionCallExpression sub = (FunctionCallExpression)expressions.get(i);
-                        if (sub.function.name.equals("__builtin_toString")) {
-                            emit(instructions, "printInt", sub.parameters.get(0));
-                            continue;
-                        }
-                    }
-                    emit(instructions, "print", expressions.get(i));
-                }
-                for (int i = size; i < expressions.size(); ++i) {
-                    emit(instructions, "println", expressions.get(i));
-                }
-                return true;
-            }
+        if (function.type instanceof VoidType) {
+            instructions.add(CallInstruction.getInstruction(null, function, operands));
+        } else {
+            operand = Environment.registerTable.addTemporaryRegister();
+            instructions.add(CallInstruction.getInstruction(operand, function, operands));
         }
-        return false;
-    }
-
-    private void emit(List<Instruction> instructions, String name, Expression parameter) {
-        Function function = (Function)Environment.symbolTable.get(name).type;
-        parameter.emit(instructions);
-        parameter.load(instructions);
-        List<Operand> operands = new ArrayList<Operand>() {{
-            add(parameter.operand);
-        }};
-        instructions.add(CallInstruction.getInstruction(null, function, operands));
     }
 }
