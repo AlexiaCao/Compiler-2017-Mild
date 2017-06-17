@@ -1,4 +1,4 @@
-package BackEnd.Allocator.GlobalRegisterAllocator;
+package BackEnd.Allocator.RegisterAllocator;
 
 import BackEnd.Allocator.PhysicalRegister;
 import BackEnd.ControlFlowGraph.Operand.VirtualRegister.VariableRegister.TemporaryRegister;

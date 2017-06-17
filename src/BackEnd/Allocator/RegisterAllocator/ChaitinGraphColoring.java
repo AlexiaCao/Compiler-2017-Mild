@@ -1,6 +1,5 @@
-package BackEnd.Allocator.GlobalRegisterAllocator.GraphColoring;
+package BackEnd.Allocator.RegisterAllocator;
 
-import BackEnd.Allocator.GlobalRegisterAllocator.InterferenceGraph;
 import BackEnd.Allocator.PhysicalRegister;
 import BackEnd.ControlFlowGraph.Operand.VirtualRegister.VariableRegister.TemporaryRegister;
 import BackEnd.ControlFlowGraph.Operand.VirtualRegister.VirtualRegister;

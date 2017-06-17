@@ -1,6 +1,6 @@
 import BackEnd.Translator.NASM.NASMTranslator.NASMBasicTranslator;
 import Environment.Environment;
-import BackEnd.Allocator.GlobalRegisterAllocator.RegisterAllocator;
+import BackEnd.Allocator.RegisterAllocator.RegisterAllocator;
 import BackEnd.ControlFlowGraph.Graph;
 import FrontEnd.AbstractSyntaxTree.Function;
 import FrontEnd.ConcreteSyntaxTree.Listener.ClassFetcherListener;

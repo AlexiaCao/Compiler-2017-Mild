@@ -16,9 +16,9 @@ public class NASMRegister extends PhysicalRegister {
 	public static PhysicalRegister r10 = new NASMRegister(11, "r10", false);
 	public static PhysicalRegister r11 = new NASMRegister(12, "r11", false);
 	public static PhysicalRegister r12 = new NASMRegister(13, "r12", true);
-	public static PhysicalRegister r13 = new NASMRegister(14, "r12", true);
-	public static PhysicalRegister r14 = new NASMRegister(15, "r13", true);
-	public static PhysicalRegister r15 = new NASMRegister(16, "r14", true);
+	public static PhysicalRegister r13 = new NASMRegister(14, "r13", true);
+	public static PhysicalRegister r14 = new NASMRegister(15, "r14", true);
+	public static PhysicalRegister r15 = new NASMRegister(16, "r15", true);
 
 
 	private NASMRegister(int identity, String name, boolean callPreserved) {

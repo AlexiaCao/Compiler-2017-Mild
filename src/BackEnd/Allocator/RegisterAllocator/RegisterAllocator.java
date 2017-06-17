@@ -1,7 +1,6 @@
-package BackEnd.Allocator.GlobalRegisterAllocator;
+package BackEnd.Allocator.RegisterAllocator;
 
 import BackEnd.Allocator.Allocator;
-import BackEnd.Allocator.GlobalRegisterAllocator.GraphColoring.ChaitinGraphColoring;
 import BackEnd.ControlFlowGraph.Block;
 import BackEnd.ControlFlowGraph.Instruction.ArithmeticInstruction.BinaryInstruction.BinaryInstruction;
 import BackEnd.ControlFlowGraph.Instruction.Instruction;
